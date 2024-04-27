@@ -1,0 +1,96 @@
+:root {
+    --primary-color: #ff8200;
+    --secondary-color: #041e42;
+    --tertiary-color: #b1b3b3;
+    --font-color-light: #f9f9f9;
+    --font-color-dark: #221f20;
+    --background-color: #f0f0f0;
+}
+
+body {
+    font-family: 'Bebas Neue', 'Open Sans', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+}
+
+.navbar {
+    background-color: var(--secondary-color);
+}
+
+.navbar-nav .nav-link {
+    color: var(--font-color-light);
+    font-size: 1.2rem;
+}
+
+.navbar-brand {
+    color: var(--font-color-light);
+}
+
+.button {
+    background-color: var(--primary-color); 
+    border: none;
+    color: var(--font-color-light);
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: darken(var(--primary-color), 10%);
+}
+
+.footer {
+    background-color: var(--secondary-color);
+}
+
+.main-text {
+    color: var(--font-color-dark);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.sub-text {
+    color: var(--tertiary-color);
+    font-size: 1.3rem;
+    font-weight: 400;
+    padding-top: 0.5rem;
+}
+
+.welcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 85vh;
+    width: 100%;
+}
+
+.welcome-text {
+    width: 50%;
+    padding-left: 8rem;
+}
+
+.welcome-image {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-group{
+    padding-top: 1rem;
+}
+
+.button-main-login {
+    background-color: var(--primary-color); 
+    color: var(--font-color-light);
+    font-weight: 500;
+    font-size: 1.2rem;
+    padding: 0.3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.25rem;
+    border: none;
+}
