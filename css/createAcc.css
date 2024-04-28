@@ -1,0 +1,96 @@
+.createAcc-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 92.2vh;
+    width: 100%;
+}
+
+.createAcc-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 85vh;
+    width: 50%;
+}
+
+.createAcc-title {
+    color: var(--font-color-dark);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.createAcc-sub{
+    color: var(--tertiary-color);
+    font-size: 1rem;
+    font-weight: 400;
+    padding-top: 0.5rem;
+    text-align: left;
+    padding-bottom: 1rem;
+}
+
+.createAcc-text{
+    width: 50%;
+}
+
+.createAcc-form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 50%;
+}
+
+.createAcc-image-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 50%;
+    height: 100%;
+    background: url('../assets/login3.jpg') no-repeat center center;
+    background-size: cover; 
+}
+
+.createAcc-form {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 50%;
+}
+
+.form {
+    width: 100%;
+    padding-bottom: 0.5rem;
+}
+
+.form-label {
+    color: var(--font-color-dark);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.button-createAcc-complete {
+    background-color: var(--primary-color);
+    border: none;
+    color: var(--font-color-light);
+    font-size: 1.2rem;
+    border-radius: 0.25rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    text-decoration: none;
+    width: 100%;
+}
+
+.createAcc-button-container {
+    padding-top: 1rem;
+    width: 100%;
+}
