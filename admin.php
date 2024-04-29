@@ -13,12 +13,19 @@
 /*
 * Reference for tables: https://getbootstrap.com/docs/4.5/content/tables/
 */
+<<<<<<< HEAD
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 session_start();
 require_once('config.php');
 require_once('validate_session.php');
+=======
+
+session_start();
+require_once('../config.php');
+require_once('../validate_session.php');
+>>>>>>> 83664c52a50e3ba0d23d0706825f66d7febbcfe9
 ?>
 <!doctype html>
 <html lang="en">
