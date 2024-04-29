@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once('../config.php');
-require_once('../validate_session.php');
+require_once('config.php');
+require_once('validate_session.php');
 
-// Initialize variable to store fetched reports
+// Initialize variables to store fetched reports
 $semesterReports = [];
 $generalReports = [];
 
@@ -30,12 +30,11 @@ if (isset($_POST['semester'])) {
 
     // Fetch reports from each table for the selected semester
     foreach ($semesterTables as $table) {
-        $sql = "SELECT * FROM $table";
+        $sql = "SELECT * FROM $table WHERE Semester = '$selectedSemester'";
         $result = $conn->query($sql);
         if ($result) {
             while ($row = $result->fetch_assoc()) {
-                // Assuming 'report_name' is the column name containing the report names
-                $semesterReports[] = $row['report_name'];
+                $semesterReports[$table][] = $row; // Store entire row in the array
             }
         }
     }
@@ -56,9 +55,6 @@ if (isset($_POST['general_report'])) {
         case 'courses':
             $sql = "SELECT * FROM report_r3_instructor_number_of_courses";
             break;
-        case 'instructor_info':
-            $sql = "SELECT * FROM report_r22_instructor_info_admin";
-            break;
         default:
             $sql = "";
             break;
@@ -69,8 +65,7 @@ if (isset($_POST['general_report'])) {
         $result = $conn->query($sql);
         if ($result) {
             while ($row = $result->fetch_assoc()) {
-                // Assuming 'report_name' is the column name containing the report names
-                $generalReports[] = $row['report_name'];
+                $generalReports[$selectedGeneralReport][] = $row; // Store entire row in the array
             }
         }
     }
@@ -124,9 +119,26 @@ if (isset($_POST['general_report'])) {
         </form>
         <!-- Display fetched reports per semester -->
         <?php if (!empty($semesterReports)): ?>
-          <h3>Reports for <?php echo $selectedSemester; ?></h3>
-          <?php foreach ($semesterReports as $report): ?>
-            <p><?php echo $report; ?></p>
+          <?php foreach ($semesterReports as $table => $reports): ?>
+            <h3>Reports for <?php echo $table; ?></h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <?php foreach (array_keys($reports[0]) as $column): ?>
+                    <th><?php echo $column; ?></th>
+                  <?php endforeach; ?>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($reports as $report): ?>
+                  <tr>
+                    <?php foreach ($report as $value): ?>
+                      <td><?php echo $value; ?></td>
+                    <?php endforeach; ?>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
           <?php endforeach; ?>
         <?php endif; ?>
       </div>
@@ -139,7 +151,6 @@ if (isset($_POST['general_report'])) {
               <option value="labs">Labs</option>
               <option value="research_projects">Research Projects</option>
               <option value="courses">Courses</option>
-              <option value="instructor_info">Instructor Info</option>
               <!-- Add more options for other report types as needed -->
             </select>
           </div>
@@ -147,9 +158,26 @@ if (isset($_POST['general_report'])) {
         </form>
         <!-- Display fetched general reports -->
         <?php if (!empty($generalReports)): ?>
-          <h3>General Reports</h3>
-          <?php foreach ($generalReports as $report): ?>
-            <p><?php echo $report; ?></p>
+          <?php foreach ($generalReports as $type => $reports): ?>
+            <h3><?php echo ucwords(str_replace("_", " ", $type)); ?></h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <?php foreach (array_keys($reports[0]) as $column): ?>
+                    <th><?php echo $column; ?></th>
+                  <?php endforeach; ?>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($reports as $report): ?>
+                  <tr>
+                    <?php foreach ($report as $value): ?>
+                      <td><?php echo $value; ?></td>
+                    <?php endforeach; ?>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
           <?php endforeach; ?>
         <?php endif; ?>
       </div>
