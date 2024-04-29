@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Check for individual login
-    $query = "SELECT Ind_id, IndPassword FROM individual WHERE IndEmail_address = ?";
+    $query = "SELECT Ind_id, IndFname, IndPassword FROM individual WHERE IndEmail_address = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $input_username);
     $stmt->execute();
@@ -51,9 +51,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($ind_id_length === 6) {
           $message = '<div class="alert alert-success" role="alert">Login Successful! Redirecting to student page...</div>';
+          $_SESSION['user_first_name'] = $row['IndFname'];
           $redirectPage = "student.php";
         } elseif ($ind_id_length === 8) {
           $message = '<div class="alert alert-success" role="alert">Login Successful! Redirecting to instructor page...</div>';
+          $_SESSION['user_id'] = $row['Ind_id'];
+          $_SESSION['user_first_name'] = $row['IndFname'];
           $redirectPage = "instructor.php";
         }
         $_SESSION['user'] = $input_username;
