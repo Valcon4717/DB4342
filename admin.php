@@ -9,6 +9,15 @@
  */
 -->
 
+<?php
+/*
+* Reference for tables: https://getbootstrap.com/docs/4.5/content/tables/
+*/
+
+session_start();
+require_once('../config.php');
+require_once('../validate_session.php');
+?>
 <!doctype html>
 <html lang="en">
 
@@ -33,6 +42,12 @@
             <button type="button" class="button-top-signup">
               <a class="nav-link" href="index.php" style="font-weight: 600;">Log Out</a>
             </button>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="adminReport.php" style="font-weight: 600;">Reports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="adminViewEdit.php" style="font-weight: 600;">Procedures & Views</a>
           </li>
         </ul>
       </div>
