@@ -24,16 +24,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $message = '<div class="alert alert-danger" role="alert">Please enter username and password.</div>';
   } else {
     // Check for admin login
-    $admin_query = "SELECT Name FROM adminlogins WHERE Email = ? AND Password = ?";
+    $admin_query = "SELECT FirstName FROM adminlogins WHERE Email = ? AND Password = ?";
     $admin_stmt = $conn->prepare($admin_query);
     $admin_stmt->bind_param("ss", $input_username, $input_password);
     $admin_stmt->execute();
     $admin_result = $admin_stmt->get_result();
 
-    if ($admin_result->num_rows > 0) {
+    if ($admin_result->num_rows > 0 && $admin_row = $admin_result->fetch_assoc()){
       // Admin login successful
       $_SESSION['user'] = $input_username;
       $_SESSION['admin_logged_in'] = true;
+      $_SESSION['user_first_name'] = $admin_row['FirstName'];
       header("Location: admin.php");
       exit();
     }
